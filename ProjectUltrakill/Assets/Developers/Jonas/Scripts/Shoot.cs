@@ -16,6 +16,14 @@ public class Shoot : MonoBehaviour
         {
             shoot();
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Debug.Log("charge");
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            Debug.Log("shoot");
+        }
     }
 
     void shoot()
@@ -24,7 +32,14 @@ public class Shoot : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            if (hit.collider.CompareTag("EnemyTest"))
+            {
+                Debug.Log("Enemy hit");
+            }
+            else
+            {
+                Debug.Log("Enemy not hit");
+            }
         }
     }
 }
