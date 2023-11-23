@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class Playercam : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float sensX;
+    public float sensY;
+
+    public Transform orientation;
+
+    float xRotation;
+    float yRotation;
+
+    private void Start()
     {
-        
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+       //get mouse input 
+       float MouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+       float MouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+
+        yRotation += MouseX;
+
+        xRotation += MouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        //rotate cam and rotation
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 }
