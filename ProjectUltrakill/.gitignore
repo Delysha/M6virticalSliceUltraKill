@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+ProjectUltrakill/Assets/UnityStuff/Settings/URP-Balanced.asset
+ProjectUltrakill/Assets/UnityStuff/Settings/URP-Performant.asset
+ProjectUltrakill/ProjectSettings/ShaderGraphSettings.asset
