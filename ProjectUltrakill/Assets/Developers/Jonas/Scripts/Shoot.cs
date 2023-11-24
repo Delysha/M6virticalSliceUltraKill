@@ -7,6 +7,8 @@ public class Shoot : MonoBehaviour
     public float damage = 10f;
     public float range = 100f;
 
+    
+
     public Camera fpsCam;
     public Animator animator;
 
@@ -35,6 +37,8 @@ public class Shoot : MonoBehaviour
             if (hit.collider.CompareTag("EnemyTest"))
             {
                 Debug.Log("Enemy hit");
+                Destroy(hit.collider.gameObject);
+
             }
             else
             {
