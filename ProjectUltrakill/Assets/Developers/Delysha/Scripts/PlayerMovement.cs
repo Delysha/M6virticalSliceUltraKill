@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    void Start()
-    {
-        
-    
-    }
+    [Header("Movement")]
+    public float MoveSpeed;
 
-    void Update()
-    {
- 
-    }
+    public Transform orientation;
+
+    float horizontalInput;
+    float verticalInput;
+
+
 }
