@@ -7,7 +7,7 @@ public class Shoot : MonoBehaviour
     public float damage = 10f;
     public float range = 100f;
 
-    
+    public bool TrailTrue = false;
 
     public Camera fpsCam;
     public Animator animator;
@@ -30,6 +30,7 @@ public class Shoot : MonoBehaviour
 
     void shoot()
     {
+        TrailTrue = true;
         animator.SetTrigger("ShootTrigger");
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
