@@ -23,9 +23,27 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
     }
 
+    private void Update()
+    {
+        MyInput();
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
     private void MyInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+    }
+
+    private void MovePlayer()
+    {
+        //calculate movement direction
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        rb.AddForce(moveDirection.normalized * MoveSpeed * 10f, ForceMode.Force);
     }
 }
