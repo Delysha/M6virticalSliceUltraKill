@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class JumpingScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private const KeyCode Space = KeyCode.Space;
+    public Rigidbody rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetButtonDown(Space))
+        {
+            rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+        }
+       
     }
 }
