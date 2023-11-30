@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 1618219809}
   - component: {fileID: 1618219813}
   - component: {fileID: 1618219814}
-  - component: {fileID: 1618219815}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -442,27 +441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6504dcf319cee014d9175d2cabdc789e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 7
-  groundDrag: 5
+  MoveSpeed: 200
+  groundDrag: 180
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   orientation: {fileID: 1068757217}
---- !u!114 &1618219815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618219807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571bc9fe66493eb449373e7e36a32965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forceConst: 50
-  rb: {fileID: 1618219813}
 --- !u!1 &1732511767
 GameObject:
   m_ObjectHideFlags: 0

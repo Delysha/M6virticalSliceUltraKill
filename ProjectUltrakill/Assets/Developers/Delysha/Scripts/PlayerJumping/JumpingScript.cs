@@ -14,7 +14,6 @@ public class JumpingScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(Space))
         {
             rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
         }
