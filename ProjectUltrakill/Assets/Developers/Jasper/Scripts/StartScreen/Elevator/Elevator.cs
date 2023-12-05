@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class Elevator : MonoBehaviour
     {
         spawnPosition = transform.position;
     }
-    
+
     // Update is called once per frame
     void Update()
     {
