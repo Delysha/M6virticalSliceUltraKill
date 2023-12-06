@@ -15,6 +15,12 @@ public class Shoot : MonoBehaviour
 
     public Camera fpsCam;
     public Animator animator;
+    Enemy enemy = null;
+
+    private void Start()
+    {
+        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+    }
 
     void Update()
     {
@@ -48,14 +54,14 @@ public class Shoot : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
-                if (hit.collider.CompareTag("EnemyTest"))
+                if (hit.collider.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit");
-                    Destroy(hit.collider.gameObject);
+                    enemy.health -= damage;
                 }
                 else
                 {
-                    Debug.Log("Enemy not hit");
+                    Debug.Log("Aimlabs is free to download, you know?");
                 }
             }
 
