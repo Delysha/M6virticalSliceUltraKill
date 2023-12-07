@@ -6,8 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] public float health;
 
-    // Start is called before the first frame update
-    void Start()
+    bool hasAttacked;
+    private void Update()
     {
         if (health <= 0)
         {
@@ -15,9 +15,24 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (!hasAttacked)
+        {
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        Debug.Log("Attacking!");
+        StartCoroutine(AttackCooldown(1f));
+        hasAttacked = true;
+    }
+
+    IEnumerator AttackCooldown(float atkDelay)
+    {
+        yield return new WaitForSeconds(atkDelay);
+        hasAttacked = false;
     }
 }

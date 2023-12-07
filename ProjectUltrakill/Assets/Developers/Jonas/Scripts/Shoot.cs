@@ -19,7 +19,7 @@ public class Shoot : MonoBehaviour
 
     private void Start()
     {
-        enemy = GameObject.Find("Enemy").GetComponent<Enemy>();
+        
     }
 
     void Update()
@@ -54,10 +54,12 @@ public class Shoot : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
+                Enemy hitEnemy = hit.collider.GetComponent<Enemy>();
+
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit");
-                    enemy.health -= damage;
+                    hitEnemy.health -= damage;
                 }
                 else
                 {
