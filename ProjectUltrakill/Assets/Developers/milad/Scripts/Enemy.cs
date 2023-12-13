@@ -6,11 +6,22 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] public float health;
 
+    static EnemyManager manager;
+
     bool hasAttacked;
+
+    private void Start()
+    {
+        manager = GetComponent<EnemyManager>();
+    }
     private void Update()
     {
         if (health <= 0)
         {
+            if (manager != null)
+            {
+                manager.enemiesAlive--;
+            }
             Destroy(gameObject);
         }
     }
