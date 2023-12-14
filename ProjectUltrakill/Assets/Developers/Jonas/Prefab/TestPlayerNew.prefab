@@ -567,11 +567,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  range: 100
+  range: 20000
   shootingCooldown: 0.4
   TrailTrue: 0
   fpsCam: {fileID: 3291870702121880054}
   animator: {fileID: 8118683555320287011}
+  endPos: {x: 0, y: 0, z: 0}
 --- !u!114 &2470421056564773954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,11 +589,19 @@ MonoBehaviour:
   speed: 12
   gravity: -19.62
   jumpHeight: 5
+  dashTime: 0.2
+  dashSpeed: 30
+  dashDecelerationAir: 2
+  dashDecelerationGround: 7
+  dashIncreaseRate: 0.9
+  dashText: {fileID: 0}
   groundCheck: {fileID: 8778403318982543700}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  velocity: {x: 0, y: 0, z: 0}
+  isDashing: 0
 --- !u!143 &7088911808084747860
 CharacterController:
   m_ObjectHideFlags: 0
