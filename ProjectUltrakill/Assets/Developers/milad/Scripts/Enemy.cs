@@ -8,7 +8,10 @@ public class Enemy : MonoBehaviour
 
     static EnemyManager manager;
 
+    EnemyFollow enemyFollow;
+
     bool hasAttacked;
+    bool isTouching;
 
     private void Start()
     {
@@ -16,6 +19,10 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
+        while (isTouching && !hasAttacked)
+        {
+            Attack();
+        }
         if (health <= 0)
         {
             if (manager != null)
@@ -28,17 +35,27 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!hasAttacked)
+        if (other.CompareTag("Player"))
         {
-            Attack();
+            Debug.Log("Touching player!");
+            isTouching = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("No longer touching player inappropriately");
+            isTouching = false;
         }
     }
 
     void Attack()
     {
+        hasAttacked = true;
         Debug.Log("Attacking!");
         StartCoroutine(AttackCooldown(1f));
-        hasAttacked = true;
     }
 
     IEnumerator AttackCooldown(float atkDelay)

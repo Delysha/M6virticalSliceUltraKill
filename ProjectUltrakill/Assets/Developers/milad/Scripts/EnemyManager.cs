@@ -29,9 +29,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    void RandomizeSpawnPosition()
+    {
+
+    }
+
     IEnumerator SpawnEnemy()
     {
-        Instantiate(enemyObj[0], spawnpoints[0].position, Quaternion.identity);
+        Instantiate(enemyObj[0], spawnpoints[Random.Range(0, 4)].position, Quaternion.identity);
         Debug.Log("Enemy spawned!");
         enemiesAlive++;
         enemiesSpawned++;

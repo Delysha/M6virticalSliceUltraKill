@@ -10,7 +10,7 @@ public class EnemyFollow : MonoBehaviour
 {
     public NavMeshAgent enemy;
     private Transform player;
-    bool touchingPlayer;
+    public bool touchingPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,22 +24,6 @@ public class EnemyFollow : MonoBehaviour
         if (!touchingPlayer)
         {
             enemy.SetDestination(player.position);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!touchingPlayer && other.CompareTag("Player"))
-        {
-            touchingPlayer = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (touchingPlayer && other.CompareTag("Player"))
-        {
-            touchingPlayer = false;
         }
     }
 }
