@@ -1,19 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveTrailForward : MonoBehaviour
 {
-    private float speed = 600;
-    void Update()
+    private Vector3 startPos;
+    private Shoot shoot;
+
+    public TrailRenderer trail;
+
+
+    private void Start()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        trail.startWidth = 0.09f;
+        startPos = transform.position;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            shoot = player.GetComponent<Shoot>();
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        speed = 0;
-        Destroy(gameObject);
-        Debug.Log("lock in brah");
+        if (trail.startWidth >= 0)
+        {
+            trail.startWidth -= 0.6f * Time.deltaTime;
+        }
+        if (trail.startWidth <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        transform.position = shoot.endPos;
     }
 }

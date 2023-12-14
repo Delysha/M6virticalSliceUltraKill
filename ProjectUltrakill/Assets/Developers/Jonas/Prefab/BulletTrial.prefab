@@ -98,7 +98,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.9890566, b: 0.83584905, a: 1}
+      key0: {r: 1, g: 0.92857134, b: 0, a: 1}
       key1: {r: 1, g: 0.9956419, b: 0.9415095, a: 1}
       key2: {r: 1, g: 0.9956419, b: 0.9415095, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -114,7 +114,7 @@ TrailRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 22590
+      atime0: 0
       atime1: 65535
       atime2: 0
       atime3: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2b5b78d86f4cc4085a564389d07cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trail: {fileID: 359127862270390775}
 --- !u!65 &6666781873295339375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.4, y: 0.4, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}

@@ -9,7 +9,7 @@ public class ShootTrail : MonoBehaviour
     public Shoot shoot;
     void Start()
     {
-        
+
     }
 
     private void Update()

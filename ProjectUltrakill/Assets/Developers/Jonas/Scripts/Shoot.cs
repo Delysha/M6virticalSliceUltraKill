@@ -15,6 +15,7 @@ public class Shoot : MonoBehaviour
 
     public Camera fpsCam;
     public Animator animator;
+    public Vector3 endPos;
 
     void Update()
     {
@@ -48,6 +49,7 @@ public class Shoot : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
+                endPos = hit.point;
                 if (hit.collider.CompareTag("EnemyTest"))
                 {
                     Debug.Log("Enemy hit");
