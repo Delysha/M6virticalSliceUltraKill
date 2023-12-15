@@ -55,12 +55,8 @@ public class Shoot : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
-<<<<<<< HEAD
                 endPos = hit.point;
-=======
                 Enemy hitEnemy = hit.collider.GetComponent<Enemy>();
-
->>>>>>> enemySpawning
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     Debug.Log("Enemy hit");
