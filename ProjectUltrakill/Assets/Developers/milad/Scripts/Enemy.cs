@@ -6,18 +6,61 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] public float health;
 
-    // Start is called before the first frame update
-    void Start()
+    static EnemyManager manager;
+
+    EnemyFollow enemyFollow;
+
+    bool hasAttacked;
+    bool isTouching;
+
+    private void Start()
     {
+        manager = GetComponent<EnemyManager>();
+    }
+    private void Update()
+    {
+        while (isTouching && !hasAttacked)
+        {
+            Attack();
+        }
         if (health <= 0)
         {
+            if (manager != null)
+            {
+                manager.enemiesAlive--;
+            }
             Destroy(gameObject);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Touching player!");
+            isTouching = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("No longer touching player inappropriately");
+            isTouching = false;
+        }
+    }
+
+    void Attack()
+    {
+        hasAttacked = true;
+        Debug.Log("Attacking!");
+        StartCoroutine(AttackCooldown(1f));
+    }
+
+    IEnumerator AttackCooldown(float atkDelay)
+    {
+        yield return new WaitForSeconds(atkDelay);
+        hasAttacked = false;
     }
 }

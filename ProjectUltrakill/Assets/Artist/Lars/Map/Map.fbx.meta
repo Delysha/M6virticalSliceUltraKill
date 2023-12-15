@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: de766ad2e417069498a16020fe121e3e
+=======
+guid: b8e2592e4cababa4b87b7fcb8444e34e
+>>>>>>> enemySpawning
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []

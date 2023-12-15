@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: db3daed5f207cd74da67578b37e29df3
+=======
+guid: cb3b26b497418954f9d42731c435e364
+>>>>>>> enemySpawning
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
