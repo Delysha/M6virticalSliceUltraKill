@@ -32,31 +32,21 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //temporary dash text
         dashText.text = ((int)dashCooldown).ToString();
         if (dashCooldown <= 3)
             dashCooldown += dashIncreaseRate * Time.deltaTime;
 
+        //checking if the player is grounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (Input.GetKeyDown("left shift"))
-        {
-            if (!isDashing && dashCooldown >= 1f)
-            {
-                isDashing = true;
-                StartCoroutine(DashCoroutine());
-            }
-        }
-
+        //ground slam
         if (!isGrounded && Input.GetKeyDown("left ctrl"))
         {
-            velocity.y = -35f;
+            velocity.y = -40f;
         }
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
+        //basic movement and jumping
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -69,12 +59,29 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        //if grounded make sure it doesnt apply gravity
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        //dashing
+        if (Input.GetKeyDown("left shift"))
+        {
+            if (!isDashing && dashCooldown >= 1f)
+            {
+                isDashing = true;
+                StartCoroutine(DashCoroutine());
+            }
+        }
+
+        //stops gravity being applied to you during dash
         if (!isDashing)
         {
             velocity.y += gravity * Time.deltaTime;
         }
 
-
+        //faking momentum after dash lmao
         if (isGrounded)
         {
             velocity.x = Mathf.Lerp(velocity.x, 0f, dashDecelerationGround * Time.deltaTime);

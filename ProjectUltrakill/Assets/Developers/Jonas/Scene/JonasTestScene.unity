@@ -20035,6 +20035,16 @@ PrefabInstance:
       propertyPath: dashText
       value: 
       objectReference: {fileID: 837692440}
+    - target: {fileID: 2470421056564773954, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727967919557444611, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
+        type: 3}
+      propertyPath: camTilt
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6364843151020228609, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
         type: 3}
       propertyPath: m_Name
