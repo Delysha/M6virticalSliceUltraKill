@@ -11,6 +11,7 @@ public class MouseLook : MonoBehaviour
     float xRotation = 0f;
 
     public float camTilt = 5f;
+    [SerializeField] private float prevTilt = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,9 +30,11 @@ public class MouseLook : MonoBehaviour
 
         //Camera tilt
         float horizontalInput = Input.GetAxis("Horizontal");
-        float tiltAngle = horizontalInput * camTilt;
+        float tilt = Mathf.Lerp(prevTilt, horizontalInput * camTilt, Time.deltaTime * 20);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, -tiltAngle);
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, -tilt);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        prevTilt = tilt;
     }
 }

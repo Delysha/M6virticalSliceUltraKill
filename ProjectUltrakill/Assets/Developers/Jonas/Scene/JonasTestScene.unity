@@ -20043,7 +20043,7 @@ PrefabInstance:
     - target: {fileID: 5727967919557444611, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
         type: 3}
       propertyPath: camTilt
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6364843151020228609, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
         type: 3}
