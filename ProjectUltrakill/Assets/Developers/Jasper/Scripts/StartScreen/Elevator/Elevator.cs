@@ -2,34 +2,61 @@
 
 public class Elevator : MonoBehaviour
 {
-    public Transform playerTransform;
     public GameObject elevatorPrefab;
-    public float platformDistance;
-    public float platformHeight;
-    public float destroyDistance;
+    public Transform spawnPoint;
+    public float moveSpeed = 5f;
+    public float spawnPointY = 10f; // Distance between tube spawns
+    public float destroyY = -6f; // Y-coordinate at which the tube is destroyed
 
-    private bool isMovingRight = true;
-    private Vector3 spawnPosition;
+    public GameObject currentTube;
+    private float tubeLength;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        spawnPosition = transform.position;
+        tubeLength = GetTubeLength();
+ 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector3 spawnPosition = new Vector3(0, platformHeight, 0);
-        Instantiate(elevatorPrefab, spawnPosition, Quaternion.identity);
-
-        // Destroy any platforms that are too far behind the player
-        foreach (GameObject platform in GameObject.FindGameObjectsWithTag("Platform"))
+        // Check if the tube is below the destroyY, then destroy it
+        if (currentTube.transform.position.y <= destroyY)
         {
-            if (platform.transform.position.x < playerTransform.position.x - destroyDistance)
+            Destroy(currentTube);
+            SpawnTube(); // Spawn a new tube after destroying the previous one
+        }
+
+        MoveTube();
+    }
+
+    private void MoveTube()
+    {
+        // Check if the tube exists before moving it
+        if (currentTube != null)
+        {
+            currentTube.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime); // Move down along the Y-axis
+
+            // Check if the tube has moved a distance equal to its length
+            if (currentTube.transform.position.y - spawnPoint.position.y >= tubeLength)
             {
-                Destroy(platform);
+                // Adjust the spawn point for a seamless transition
+                // spawnPoint.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y - tubeLength, spawnPoint.position.z);
             }
         }
+    }
+
+    private void SpawnTube()
+    {
+        // Instantiate a new tube at the spawn point
+        currentTube = Instantiate(elevatorPrefab, spawnPoint.position, Quaternion.identity);
+
+        // Move the spawn point down for the next instantiation
+        spawnPoint.position = new Vector3(spawnPoint.position.x, spawnPointY, spawnPoint.position.z);
+    }
+
+    // Helper method to get the length of the tube along the Y-axis
+    private float GetTubeLength()
+    {
+        return 25f; // Set the tube length
     }
 }
