@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.XR;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyFollow : MonoBehaviour
 {
