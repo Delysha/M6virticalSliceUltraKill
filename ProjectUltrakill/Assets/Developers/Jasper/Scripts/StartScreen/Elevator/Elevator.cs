@@ -4,8 +4,8 @@ public class Elevator : MonoBehaviour
 {
     public GameObject elevatorPrefab;
     public Transform spawnPoint;
-    public float moveSpeed = 5f;
-    public float spawnPointY = 10f; // Distance between tube spawns
+    public float moveSpeed = 40f;
+    public float spawnPointY = 16.45f; // Distance between tube spawns
     public float destroyY = -6f; // Y-coordinate at which the tube is destroyed
 
     public GameObject currentTube;
@@ -35,13 +35,6 @@ public class Elevator : MonoBehaviour
         if (currentTube != null)
         {
             currentTube.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime); // Move down along the Y-axis
-
-            // Check if the tube has moved a distance equal to its length
-            if (currentTube.transform.position.y - spawnPoint.position.y >= tubeLength)
-            {
-                // Adjust the spawn point for a seamless transition
-                // spawnPoint.position = new Vector3(spawnPoint.position.x, spawnPoint.position.y - tubeLength, spawnPoint.position.z);
-            }
         }
     }
 
