@@ -15,7 +15,7 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        currentWaveSize += 5;
+        currentWaveSize += 5; // Setting spawn limit
         Debug.Log($"Enemy limit: {currentWaveSize}");
     }
 
@@ -24,22 +24,19 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemiesAlive < currentWaveSize && Time.time >= spawnInterval)
         {
-            StartCoroutine(SpawnEnemy());
-            spawnInterval = Time.time + spawnInterval;
+            StartCoroutine(SpawnEnemy()); // Begin spawn cooldown.
+            spawnInterval = Time.time + spawnInterval; // Wait until 2.5 seconds has passed or whatever spawnInterval is rn.
         }
-    }
-
-    void RandomizeSpawnPosition()
-    {
-
     }
 
     IEnumerator SpawnEnemy()
     {
+        // Instantiate the first object in the enemyObj array, pick a random position from the spawnpoints array & assign position & rotation values.
         Instantiate(enemyObj[0], spawnpoints[Random.Range(0, 4)].position, Quaternion.identity);
+
         Debug.Log("Enemy spawned!");
         enemiesAlive++;
         enemiesSpawned++;
-        yield return new WaitForSeconds(spawnInterval);
+        yield return new WaitForSeconds(spawnInterval); // Wait 2.5 seconds.
     }
 }

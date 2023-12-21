@@ -15,7 +15,7 @@ public class EnemyFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform; // Look for object with "Player" tag.
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class EnemyFollow : MonoBehaviour
     {
         if (!touchingPlayer)
         {
-            enemy.SetDestination(player.position);
+            enemy.SetDestination(player.position); // Setting a destination in the NavMesh component for the object when not touching the player.
         }
     }
 }

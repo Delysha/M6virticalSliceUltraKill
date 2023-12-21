@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        manager = GetComponent<EnemyManager>();
+        manager = GetComponent<EnemyManager>(); // Just grabbing a few values from EnemyManager.cs
     }
     private void Update()
     {
