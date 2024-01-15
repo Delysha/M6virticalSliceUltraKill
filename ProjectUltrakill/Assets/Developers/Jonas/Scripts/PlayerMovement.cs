@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using TMPro;
 
@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
 
+    [Header("Other")]
+    public Animator animator;
     public Vector3 velocity;
     float dashCooldown;
     public bool isDashing;
@@ -87,6 +89,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         controller.Move(velocity * Time.deltaTime);
+
+        if(Input.GetAxis("Horizontal")/ Input.GetAxis("Vertical") != 0 && isGrounded == true)
+        {
+            animator.SetBool("Walking", true);
+
+        }
+        else animator.SetBool("Walking", false);
     }
 
     private IEnumerator DashCoroutine()
