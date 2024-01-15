@@ -90,12 +90,16 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if(Input.GetAxis("Horizontal")/ Input.GetAxis("Vertical") != 0 && isGrounded == true)
+        float moveInputMagnitude = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).sqrMagnitude;
+
+        if (moveInputMagnitude > 0.01f && isGrounded)
         {
             animator.SetBool("Walking", true);
-
         }
-        else animator.SetBool("Walking", false);
+        else
+        {
+            animator.SetBool("Walking", false);
+        }
     }
 
     private IEnumerator DashCoroutine()
