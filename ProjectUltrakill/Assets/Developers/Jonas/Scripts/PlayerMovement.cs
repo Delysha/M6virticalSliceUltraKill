@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
         float moveInputMagnitude = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).sqrMagnitude;
 
-        if (moveInputMagnitude > 0.01f && isGrounded)
+        if (moveInputMagnitude > 0.1f && isGrounded)
         {
             animator.SetBool("Walking", true);
         }
