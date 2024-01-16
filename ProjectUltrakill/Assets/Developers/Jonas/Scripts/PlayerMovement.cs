@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,15 +29,19 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Other")]
     public Animator animator;
+    public Slider DashBar;
     public Vector3 velocity;
     float dashCooldown;
     public bool isDashing;
 
     void Update()
     {
-        dashText.text = ((int)dashCooldown).ToString();
         if (dashCooldown <= 3)
-            dashCooldown += dashIncreaseRate * Time.deltaTime;
+        {
+            StartCoroutine(DashCooldown());
+        }
+
+        DashBar.value = dashCooldown;
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -102,11 +107,19 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private IEnumerator DashCooldown()
+    {
+        if (dashCooldown <= 3 && !isDashing)
+            dashCooldown += dashIncreaseRate;
+
+        yield return new WaitForSeconds(0.3f);
+    }
+
     private IEnumerator DashCoroutine()
     {
         dashDirection = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")).normalized;
 
-        dashCooldown -= 1f;
+        dashCooldown -= 1.1f;
 
         if (dashDirection == Vector3.zero)
             dashDirection = transform.forward;
@@ -120,7 +133,8 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        isDashing = false;
         velocity = dashDirection * (dashSpeed - 1.5f);
+
+        isDashing = false;
     }
 }
