@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
@@ -17,10 +15,10 @@ public class Shoot : MonoBehaviour
     public Animator animator;
     public Vector3 endPos;
     Enemy enemy = null;
-
+    [SerializeField] private AudioSource aud;
     private void Start()
     {
-        
+
     }
 
     void Update()
@@ -53,6 +51,7 @@ public class Shoot : MonoBehaviour
             TrailTrue = true;
             animator.SetTrigger("ShootTrigger");
             RaycastHit hit;
+            aud.Play();
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
                 endPos = hit.point;

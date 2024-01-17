@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     float dashCooldown;
     public bool isDashing;
 
+    [SerializeField] private AudioClip[] DashSFX;
+    [SerializeField] private AudioSource Aud;
+
     void Update()
     {
         dashText.text = ((int)dashCooldown).ToString();
@@ -42,8 +45,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isDashing && dashCooldown >= 1f)
             {
+
                 isDashing = true;
                 StartCoroutine(DashCoroutine());
+
             }
         }
 
@@ -93,7 +98,10 @@ public class PlayerMovement : MonoBehaviour
     {
         dashDirection = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")).normalized;
 
+
+
         dashCooldown -= 1f;
+
 
         if (dashDirection == Vector3.zero)
             dashDirection = transform.forward;
