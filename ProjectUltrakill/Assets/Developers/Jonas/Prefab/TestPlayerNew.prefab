@@ -522,10 +522,10 @@ MonoBehaviour:
   damage: 10
   range: 20000
   shootingCooldown: 0.4
-  TrailTrue: 0
+  trailTrue: 0
+  endPos: {x: 0, y: 0, z: 0}
   fpsCam: {fileID: 3291870702121880054}
   animator: {fileID: 8118683555320287011}
-  endPos: {x: 0, y: 0, z: 0}
 --- !u!114 &2470421056564773954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -538,24 +538,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901de46b857783843ab9ee93027fd874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 7088911808084747860}
-  speed: 12
+  speed: 10
   gravity: -19.62
   jumpHeight: 5
   dashTime: 0.2
-  dashSpeed: 30
+  dashSpeed: 20
   dashDecelerationAir: 2
   dashDecelerationGround: 7
-  dashIncreaseRate: 0.9
-  dashText: {fileID: 0}
+  dashIncreaseRate: 0.01
+  isDashing: 0
   groundCheck: {fileID: 8778403318982543700}
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 8118683555320287011}
-  velocity: {x: 0, y: 0, z: 0}
-  isDashing: 0
+  dashBar: {fileID: 0}
+  controller: {fileID: 7088911808084747860}
+  dashText: {fileID: 0}
 --- !u!143 &7088911808084747860
 CharacterController:
   m_ObjectHideFlags: 0
@@ -805,7 +805,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7034647086842001514}
   - component: {fileID: 8118683555320287011}
-  - component: {fileID: 8258411642191374748}
   m_Layer: 0
   m_Name: FpsView
   m_TagString: Untagged
@@ -851,20 +850,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8258411642191374748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8562395114601696303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c781757a40334948b3553b22c5c28fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 2470421056564773954}
-  smoothing: 5
 --- !u!1 &8987863015034250702
 GameObject:
   m_ObjectHideFlags: 0

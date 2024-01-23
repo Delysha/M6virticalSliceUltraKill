@@ -1,42 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class ShootScript : MonoBehaviour
 {
-    public float damage = 10f;
-    public float range = 100f;
-    public float shootingCooldown = 0.1f;
-
+    [Header("Gun Properties")]
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float range = 100f;
+    [SerializeField] private float shootingCooldown = 0.1f;
     private bool canShoot = true;
     private float timeSinceLastShot = 0f;
 
-    public bool TrailTrue = false;
+    [Header("SFX")]
+    public AudioSource shootSound;
 
-    public Camera fpsCam;
-    public Animator animator;
+    [Header("Trail")]
+    public bool trailTrue = false;
     public Vector3 endPos;
-    Enemy enemy = null;
 
-    private void Start()
-    {
-        
-    }
+    [Header("Refrences")]
+    [SerializeField] private Camera fpsCam;
+    [SerializeField] private Animator animator;
+    private Enemy enemy = null;
 
     void Update()
     {
         if (canShoot && Input.GetButton("Fire1"))
         {
-            shoot();
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            Debug.Log("charge");
-        }
-        if (Input.GetButtonUp("Fire2"))
-        {
-            Debug.Log("shoot");
+            Shoot();
+            shootSound.Play();
         }
 
         timeSinceLastShot += Time.deltaTime;
@@ -46,11 +37,11 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    void shoot()
+    void Shoot()
     {
         if (canShoot)
         {
-            TrailTrue = true;
+            trailTrue = true;
             animator.SetTrigger("ShootTrigger");
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
