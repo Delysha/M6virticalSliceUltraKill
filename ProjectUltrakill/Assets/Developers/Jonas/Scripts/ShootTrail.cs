@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class ShootTrail : MonoBehaviour
 {
     public GameObject TrailPrefab;
     public Transform shootPos;
-    public Shoot shoot;
+    public ShootScript shoot;
     void Start()
     {
 
@@ -14,10 +14,10 @@ public class ShootTrail : MonoBehaviour
 
     private void Update()
     {
-        if (shoot.TrailTrue)
+        if (shoot.trailTrue)
         {
             Instantiate(TrailPrefab, shootPos.position, shootPos.rotation);
-            shoot.TrailTrue = false;
+            shoot.trailTrue = false;
             Debug.Log("trail instantiated");
         }
     }
