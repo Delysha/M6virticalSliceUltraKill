@@ -2,11 +2,9 @@
 
 public class MoveTrailForward : MonoBehaviour
 {
+    public TrailRenderer trail;
     private Vector3 startPos;
     private ShootScript shoot;
-
-    public TrailRenderer trail;
-
 
     private void Start()
     {
