@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿
 using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     float dashCooldown;
     public bool isDashing;
     private Vector3 dashDirection;
-    
+
 
     [Header("Ground properties")]
     public Transform groundCheck;
@@ -37,6 +38,18 @@ public class PlayerMovement : MonoBehaviour
     public Slider dashBar;
     public CharacterController controller;
 
+    [Header("Sound Sources and clips")]
+    [SerializeField] private AudioClip[] walkSFX;
+    [SerializeField] private AudioSource walkSource;
+
+    [SerializeField] private AudioClip[] dashSFX;
+    [SerializeField] private AudioSource dashSource;
+
+    [SerializeField] private AudioClip[] slideSFX;
+    [SerializeField] private AudioSource slideSource;
+
+    [SerializeField] private AudioClip[] jumpSFX;
+    [SerializeField] private AudioSource jumpSource;
     void Update()
     {
         //See if the player is grounded
@@ -59,8 +72,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isDashing && dashCooldown >= 1f)
             {
+
                 isDashing = true;
                 StartCoroutine(DashCoroutine());
+
             }
         }
 
@@ -74,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
             jumpSound.Play();
         }
 
@@ -125,8 +141,10 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         dashDirection = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")).normalized;
+
         dashSound.Play();
         dashCooldown -= 1.1f;
+
 
         if (dashDirection == Vector3.zero)
             dashDirection = transform.forward;
