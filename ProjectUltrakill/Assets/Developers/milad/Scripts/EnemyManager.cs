@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public int currentWaveSize, enemiesSpawned, enemiesAlive;
+    public int maxEnemyCount, enemiesSpawned, enemiesAlive;
 
     float spawnInterval = 2.5f;
 
@@ -15,14 +15,13 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        currentWaveSize += 5; // Setting spawn limit
-        Debug.Log($"Enemy limit: {currentWaveSize}");
+        Debug.Log($"Enemy limit: {maxEnemyCount}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemiesAlive < currentWaveSize && Time.time >= spawnInterval)
+        if (enemiesAlive < maxEnemyCount && Time.time >= spawnInterval)
         {
             StartCoroutine(SpawnEnemy()); // Begin spawn cooldown.
             spawnInterval = Time.time + spawnInterval; // Wait until 2.5 seconds has passed or whatever spawnInterval is rn.
