@@ -2563,6 +2563,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2470421056564773954, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
         type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 711407510}
+    - target: {fileID: 2470421056564773954, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
+        type: 3}
       propertyPath: dashBar
       value: 
       objectReference: {fileID: 1246401820}
@@ -2571,6 +2576,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestPlayerNew
       objectReference: {fileID: 0}
+    - target: {fileID: 8308904111175983163, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
+        type: 3}
+      propertyPath: trailPrefab
+      value: 
+      objectReference: {fileID: 5617162067971907508, guid: 6e953dd56690b70448124f3ce5dd99de,
+        type: 3}
     - target: {fileID: 8329922285796225741, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
         type: 3}
       propertyPath: m_LocalPosition.x
