@@ -30,9 +30,18 @@ public class PlayerMovement : MonoBehaviour
     float dashCooldown;
     public bool isDashing;
 
-    [SerializeField] private AudioClip[] DashSFX;
-    [SerializeField] private AudioSource Aud;
+    [Header("Sound Sources and clips")]
+    [SerializeField] private AudioClip[] walkSFX;
+    [SerializeField] private AudioSource walkSource;
 
+    [SerializeField] private AudioClip[] dashSFX;
+    [SerializeField] private AudioSource dashSource;
+
+    [SerializeField] private AudioClip[] slideSFX;
+    [SerializeField] private AudioSource slideSource;
+
+    [SerializeField] private AudioClip[] jumpSFX;
+    [SerializeField] private AudioSource jumpSource;
     void Update()
     {
         dashText.text = ((int)dashCooldown).ToString();
@@ -72,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            jumpSource.clip = jumpSFX[Random.Range(0, jumpSFX.Length)];
+            jumpSource.Play();
         }
 
         if (!isDashing)
@@ -98,7 +109,8 @@ public class PlayerMovement : MonoBehaviour
     {
         dashDirection = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")).normalized;
 
-
+        dashSource.clip = dashSFX[Random.Range(0, dashSFX.Length)];
+        dashSource.Play();
 
         dashCooldown -= 1f;
 

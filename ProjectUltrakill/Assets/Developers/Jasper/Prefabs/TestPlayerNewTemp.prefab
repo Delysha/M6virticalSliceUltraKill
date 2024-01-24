@@ -1653,7 +1653,6 @@ MonoBehaviour:
   fpsCam: {fileID: 4077530346524708821}
   animator: {fileID: 6690246672783190631}
   endPos: {x: 0, y: 0, z: 0}
-  shot: []
   aud: {fileID: 5959741789886256641}
 --- !u!114 &2409604159190840289
 MonoBehaviour:
@@ -1684,6 +1683,26 @@ MonoBehaviour:
     m_Bits: 64
   velocity: {x: 0, y: 0, z: 0}
   isDashing: 0
+  walkSFX:
+  - {fileID: 8300000, guid: 28eb9654ddf830748a38ffde039d89d5, type: 3}
+  - {fileID: 8300000, guid: 25fffc639bb9b8945bca3fcbca965db5, type: 3}
+  - {fileID: 8300000, guid: 70e3b994e83b87844bf90fa254b37b81, type: 3}
+  - {fileID: 8300000, guid: 9a35b3b3a77676b44a5b105a2f5ce631, type: 3}
+  - {fileID: 8300000, guid: 3a825e91b242d2c4b89a01551b3a1fe9, type: 3}
+  - {fileID: 8300000, guid: 3015cdef52b90554497ca476b57fa750, type: 3}
+  - {fileID: 8300000, guid: 48ed897370ed5484aae8c93fc7cf5cf9, type: 3}
+  - {fileID: 8300000, guid: 61c845b3a5642b0468ff963d0135ada3, type: 3}
+  walkSource: {fileID: 0}
+  dashSFX:
+  - {fileID: 8300000, guid: bcab238084bd8574291ea8b6fd5d264d, type: 3}
+  - {fileID: 8300000, guid: 756281cc0382a7848aa59dcc6c7c54ae, type: 3}
+  - {fileID: 8300000, guid: f2bb980206bb26443b05f2c4a0853f02, type: 3}
+  dashSource: {fileID: 0}
+  slideSFX: []
+  slideSource: {fileID: 0}
+  jumpSFX:
+  - {fileID: 8300000, guid: 417ca3bd8f1612e41b97cd708b32b418, type: 3}
+  jumpSource: {fileID: 0}
 --- !u!143 &8670777053378949774
 CharacterController:
   m_ObjectHideFlags: 0
