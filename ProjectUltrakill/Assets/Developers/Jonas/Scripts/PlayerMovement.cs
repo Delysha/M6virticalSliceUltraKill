@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using TMPro;
+﻿
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
-
     [Header("Basic properties")]
     public float speed = 12;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
+    private Vector3 velocity;
 
     [Header("Dash properties")]
     public float dashTime;
@@ -17,8 +17,10 @@ public class PlayerMovement : MonoBehaviour
     public float dashDecelerationAir;
     public float dashDecelerationGround;
     public float dashIncreaseRate;
+    float dashCooldown;
+    public bool isDashing;
     private Vector3 dashDirection;
-    public TMP_Text dashText;
+
 
     [Header("Ground properties")]
     public Transform groundCheck;
@@ -26,9 +28,15 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
 
-    public Vector3 velocity;
-    float dashCooldown;
-    public bool isDashing;
+    [Header("SFX")]
+    public AudioSource walkSound;
+    public AudioSource jumpSound;
+    public AudioSource dashSound;
+
+    [Header("Refrences")]
+    public Animator animator;
+    public Slider dashBar;
+    public CharacterController controller;
 
     [Header("Sound Sources and clips")]
     [SerializeField] private AudioClip[] walkSFX;
@@ -44,11 +52,21 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource jumpSource;
     void Update()
     {
-        dashText.text = ((int)dashCooldown).ToString();
-        if (dashCooldown <= 3)
-            dashCooldown += dashIncreaseRate * Time.deltaTime;
-
+        //See if the player is grounded
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        //Stop downwards velocity from increasing while on the ground
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        if (dashCooldown <= 3)
+        {
+            StartCoroutine(DashCooldown());
+        }
+
+        dashBar.value = dashCooldown;
 
         if (Input.GetKeyDown("left shift"))
         {
@@ -61,16 +79,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!isGrounded && Input.GetKeyDown("left ctrl"))
-        {
-            velocity.y = -35f;
-        }
-
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -81,16 +89,17 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            jumpSource.clip = jumpSFX[Random.Range(0, jumpSFX.Length)];
-            jumpSource.Play();
+
+            jumpSound.Play();
         }
 
+        //only apply gravity when no dashing
         if (!isDashing)
         {
             velocity.y += gravity * Time.deltaTime;
         }
 
-
+        //Make you decelerate faster when grounded
         if (isGrounded)
         {
             velocity.x = Mathf.Lerp(velocity.x, 0f, dashDecelerationGround * Time.deltaTime);
@@ -103,16 +112,38 @@ public class PlayerMovement : MonoBehaviour
         }
 
         controller.Move(velocity * Time.deltaTime);
+
+        float moveInputMagnitude = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).sqrMagnitude;
+
+        if (moveInputMagnitude > 0.1f && isGrounded)
+        {
+            animator.SetBool("Walking", true);
+            if (!walkSound.isPlaying)
+            {
+                walkSound.Play();
+            }
+        }
+        else
+        {
+            animator.SetBool("Walking", false);
+            walkSound.Stop();
+        }
+    }
+
+    private IEnumerator DashCooldown()
+    {
+        if (dashCooldown <= 3 && !isDashing)
+            dashCooldown += dashIncreaseRate;
+
+        yield return new WaitForSeconds(0.3f);
     }
 
     private IEnumerator DashCoroutine()
     {
         dashDirection = (transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical")).normalized;
 
-        dashSource.clip = dashSFX[Random.Range(0, dashSFX.Length)];
-        dashSource.Play();
-
-        dashCooldown -= 1f;
+        dashSound.Play();
+        dashCooldown -= 1.1f;
 
 
         if (dashDirection == Vector3.zero)
@@ -127,7 +158,8 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        isDashing = false;
         velocity = dashDirection * (dashSpeed - 1.5f);
+
+        isDashing = false;
     }
 }

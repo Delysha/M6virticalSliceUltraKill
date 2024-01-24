@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MoveTrailForward : MonoBehaviour
 {
     private Vector3 startPos;
-    private Shoot shoot;
+    private ShootScript shoot;
 
     public TrailRenderer trail;
 
@@ -15,7 +15,7 @@ public class MoveTrailForward : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            shoot = player.GetComponent<Shoot>();
+            shoot = player.GetComponent<ShootScript>();
         }
     }
 
