@@ -5,32 +5,61 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] public float health;
+    [SerializeField] float attackCooldown = 2f;
+    [SerializeField] int enemyDamageValue;
 
-    static EnemyManager manager;
-
-    EnemyFollow enemyFollow;
-
-    bool hasAttacked;
+    EnemyManager manager;
+    Animator animator;
+    PlayerHealth hp;
     bool isTouching;
+    bool hasAttacked;
 
-    private void Start()
+    void Start()
     {
-        manager = GetComponent<EnemyManager>(); // Just grabbing a few values from EnemyManager.cs
+        manager = GetComponent<EnemyManager>();
+        animator = GetComponent<Animator>();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            hp = player.GetComponent<PlayerHealth>(); // Get the PlayerHealth component from the player GameObject
+        }
+        else
+        {
+            Debug.LogError("Player GameObject not found!");
+        }
     }
-    private void Update()
+
+    void Update()
     {
-        while (isTouching && !hasAttacked)
+        // Check if the enemy is touching the player and hasn't attacked yet
+        if (isTouching && !hasAttacked)
         {
             Attack();
         }
+
         if (health <= 0)
         {
-            if (manager != null)
-            {
-                manager.enemiesAlive--;
-            }
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    void Attack()
+    {
+        hasAttacked = true;
+        animator.Play("attack filth");
+        animator.SetTrigger("AttackToIdle");
+        Debug.Log("Attacking!");
+        StartCoroutine(ResetAttackCooldown());
+        hp.health -= enemyDamageValue;
+    }
+
+    IEnumerator ResetAttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        hasAttacked = false;
+        yield return new WaitForSeconds(attackCooldown);
+        animator.SetTrigger("IdleToAttack");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,21 +75,20 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("No longer touching player inappropriately");
+            Debug.Log("No longer touching player.");
             isTouching = false;
+            animator.SetTrigger("AttackToWalk");
         }
     }
 
-    void Attack()
-    {
-        hasAttacked = true;
-        Debug.Log("Attacking!");
-        StartCoroutine(AttackCooldown(1f));
-    }
 
-    IEnumerator AttackCooldown(float atkDelay)
+    void Die()
     {
-        yield return new WaitForSeconds(atkDelay);
-        hasAttacked = false;
+        if (manager != null)
+        {
+            manager.enemiesAlive--;
+        }
+        Debug.Log("Enemy killed.");
+        Destroy(gameObject);
     }
 }
