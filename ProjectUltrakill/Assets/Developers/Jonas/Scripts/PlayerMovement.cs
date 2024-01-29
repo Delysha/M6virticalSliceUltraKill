@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground properties")]
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    [SerializeField] private float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
 
