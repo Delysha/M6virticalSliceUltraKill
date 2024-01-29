@@ -39,18 +39,6 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Camera cam;
 
-    [Header("Sound Sources and clips")]
-    [SerializeField] private AudioClip[] walkSFX;
-    [SerializeField] private AudioSource walkSource;
-
-    [SerializeField] private AudioClip[] dashSFX;
-    [SerializeField] private AudioSource dashSource;
-
-    [SerializeField] private AudioClip[] slideSFX;
-    [SerializeField] private AudioSource slideSource;
-
-    [SerializeField] private AudioClip[] jumpSFX;
-    [SerializeField] private AudioSource jumpSource;
     void Update()
     {
         //See if the player is grounded
@@ -127,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("Walking", false);
-            walkSound.Stop();
         }
     }
 

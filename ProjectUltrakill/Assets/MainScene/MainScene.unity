@@ -2561,6 +2561,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 675278085050954455, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bcab238084bd8574291ea8b6fd5d264d, type: 3}
     - target: {fileID: 2470421056564773954, guid: e08637972d5e4d849bc5bcc3ea6c43c2,
         type: 3}
       propertyPath: dashBar
