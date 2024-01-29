@@ -46,3 +46,6 @@ TagManager:
   - name: ui
     uniqueID: 363960163
     locked: 0
+  - name: muzzleflash
+    uniqueID: 1558988025
+    locked: 0

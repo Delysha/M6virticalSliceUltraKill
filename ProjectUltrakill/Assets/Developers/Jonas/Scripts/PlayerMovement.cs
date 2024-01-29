@@ -6,25 +6,25 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Basic properties")]
-    public float speed = 12;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    [SerializeField] private float speed = 12;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 3f;
     private Vector3 velocity;
 
     [Header("Dash properties")]
-    public float dashTime;
-    public float dashSpeed;
-    public float dashDecelerationAir;
-    public float dashDecelerationGround;
-    public float dashIncreaseRate;
-    float dashCooldown;
-    public bool isDashing;
+    [SerializeField] private float dashTime;
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashDecelerationAir;
+    [SerializeField] private float dashDecelerationGround;
+    [SerializeField] private float dashIncreaseRate;
+    [SerializeField] private float dashCooldown;
+    private bool isDashing;
     private Vector3 dashDirection;
 
 
     [Header("Ground properties")]
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    [SerializeField] private float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
 
@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Slider dashBar;
     public CharacterController controller;
+    public Camera cam;
 
     [Header("Sound Sources and clips")]
     [SerializeField] private AudioClip[] walkSFX;
