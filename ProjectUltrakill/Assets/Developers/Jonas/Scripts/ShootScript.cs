@@ -19,7 +19,7 @@ public class ShootScript : MonoBehaviour
     [Header("Refrences")]
     [SerializeField] private Camera fpsCam;
     [SerializeField] private Animator animator;
-    private Enemy enemy = null;
+    private Enemy enemy;
 
     void Update()
     {

@@ -8,16 +8,17 @@ public class Enemy : MonoBehaviour
     [SerializeField] float attackCooldown = 2f;
     [SerializeField] int enemyDamageValue;
 
-    EnemyManager manager;
     Animator animator;
     PlayerHealth hp;
+    WaveManager waveManager;
+
     bool isTouching;
     bool hasAttacked;
 
     void Start()
     {
-        manager = GetComponent<EnemyManager>();
         animator = GetComponent<Animator>();
+        waveManager = FindObjectOfType<WaveManager>();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -84,11 +85,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        if (manager != null)
-        {
-            manager.enemiesAlive--;
-        }
         Debug.Log("Enemy killed.");
+        waveManager.enemiesAlive--;
         Destroy(gameObject);
     }
 }

@@ -1,39 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    public int currentWaveSize, enemiesSpawned, enemiesAlive;
-    public int currentWaveNumber = 1;
-
-    float spawnInterval = 2.5f;
+    [SerializeField] public int currentWaveSize, enemiesSpawned, enemiesAlive;
+    [SerializeField] private int currentWaveNumber = 1;
 
     public Transform[] spawnpoint;
     public GameObject enemyObj;
-
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (currentWaveNumber == 1)
         {
-            
+            SpawnWave(3);
+            currentWaveNumber++;
+        }
+        else if (currentWaveNumber == 2 && enemiesAlive == 0)
+        {
+            SpawnWave(8);
+            currentWaveNumber++;
         }
     }
 
-    IEnumerator SpawnEnemy()
+    void SpawnWave(int waveSize)
     {
-        Instantiate(enemyObj, spawnpoint[0].position, Quaternion.identity);
-        Debug.Log("Enemy spawned!");
-        enemiesAlive++;
-        enemiesSpawned++;
-        yield return new WaitForSeconds(spawnInterval);
+        for (int i = 0; i < Mathf.Min(spawnpoint.Length, waveSize); i++)
+        {
+            Instantiate(enemyObj, spawnpoint[i].position, Quaternion.identity);
+            enemiesAlive++;
+            enemiesSpawned++;
+            Debug.Log("Enemy spawned!");
+        }
     }
 }
