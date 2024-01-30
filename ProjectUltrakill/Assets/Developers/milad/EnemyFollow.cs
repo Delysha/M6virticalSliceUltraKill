@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,6 +10,8 @@ public class EnemyFollow : MonoBehaviour
     public NavMeshAgent enemy;
     private Transform player;
     public bool touchingPlayer;
+
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
