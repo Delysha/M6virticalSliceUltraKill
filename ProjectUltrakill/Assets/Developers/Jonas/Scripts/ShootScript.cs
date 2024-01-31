@@ -6,7 +6,7 @@ public class ShootScript : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float range = 100f;
     [SerializeField] private float shootingCooldown = 0.1f;
-    private bool canShoot = true;
+    public bool canShoot = true;
     private float timeSinceLastShot = 0f;
 
     [Header("SFX")]
