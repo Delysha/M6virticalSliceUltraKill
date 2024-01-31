@@ -39,6 +39,12 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     public Camera cam;
 
+    private void Start()
+    {
+        //Make sure you start falling fast on startup
+        velocity.y = -7f;
+    }
+
     void Update()
     {
         //See if the player is grounded
