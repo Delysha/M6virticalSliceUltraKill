@@ -160,6 +160,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4854726011135264324}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 736276c1c9c268c4c889c3910f77978e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4998353528592393702}
   m_SourcePrefab: {fileID: 100100000, guid: 736276c1c9c268c4c889c3910f77978e, type: 3}
 --- !u!1 &1457793101021229898 stripped
 GameObject:
@@ -203,6 +207,8 @@ MonoBehaviour:
   health: 10
   attackCooldown: 2
   enemyDamageValue: 30
+  bloodParticle: {fileID: 3645440272081957255, guid: 2c721a6250d587a49bf5f40722ff0d67,
+    type: 3}
 --- !u!65 &7380309226667587027
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -222,8 +228,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 4, z: 2}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 1.32, y: 3.79, z: 1.41}
+  m_Center: {x: 0, y: 2, z: 0.44}
 --- !u!54 &2464469340083099933
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -384,3 +390,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &4998353528592393702
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457793101021229898}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.82
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.07, z: 0}
