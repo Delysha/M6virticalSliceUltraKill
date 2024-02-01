@@ -40,6 +40,16 @@ public class PauseScreen : MonoBehaviour
 
     public void LevelRestart()
     {
+        Resume();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    public void BackToMainScene()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        GameIsPaused = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
+    }
 }
+
