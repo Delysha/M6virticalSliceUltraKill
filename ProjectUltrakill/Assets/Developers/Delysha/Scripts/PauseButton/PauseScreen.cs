@@ -41,7 +41,7 @@ public class PauseScreen : MonoBehaviour
     public void LevelRestart()
     {
         Resume();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void BackToMainScene()
