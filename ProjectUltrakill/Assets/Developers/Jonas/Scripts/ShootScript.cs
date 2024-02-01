@@ -62,4 +62,10 @@ public class ShootScript : MonoBehaviour
             canShoot = false;
         }
     }
+
+    void OnDrawGizmos()
+    {
+        
+        Debug.DrawLine(fpsCam.transform.position, fpsCam.transform.forward * range, Color.red);    
+    }
 }

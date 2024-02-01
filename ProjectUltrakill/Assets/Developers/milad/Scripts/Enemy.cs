@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     Animator animator;
     PlayerHealth hp;
     WaveManager waveManager;
+    public GameObject bloodParticle;
 
     bool isTouching;
     bool hasAttacked;
@@ -67,7 +68,6 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Touching player!");
             isTouching = true;
         }
     }
@@ -76,17 +76,16 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("No longer touching player.");
             isTouching = false;
             animator.SetTrigger("AttackToWalk");
         }
     }
 
-
     void Die()
     {
-        Debug.Log("Enemy killed.");
         waveManager.enemiesAlive--;
+        Vector3 bloodParticlePosition = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+        Instantiate(bloodParticle, bloodParticlePosition, Quaternion.Euler(-90f, 0f, 0f));
         Destroy(gameObject);
     }
 }
