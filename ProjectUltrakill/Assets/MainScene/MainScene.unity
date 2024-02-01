@@ -7441,7 +7441,7 @@ PrefabInstance:
     - target: {fileID: 3807894311725613986, guid: e04e4415b08261943acc846c65244440,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToStart
+      value: LevelRestart
       objectReference: {fileID: 0}
     - target: {fileID: 6542432817709282884, guid: e04e4415b08261943acc846c65244440,
         type: 3}
@@ -7576,7 +7576,7 @@ PrefabInstance:
     - target: {fileID: 7523473155410385889, guid: e04e4415b08261943acc846c65244440,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToStart
+      value: LevelRestart
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
